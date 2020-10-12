@@ -21,8 +21,7 @@ while True:
   driver.get(url)
   time.sleep(3)
   if 'ページが見つかりませんでした' in driver.title:
-    with open(progerss_file_path, 'a') as f:
-      f.write(f'QUALIFIED\n')
+    print(f'QUALIFIED: {target}')
     break
   articles = driver.find_elements_by_css_selector('#ajax_load_post_list article .title a')
   for art in articles:
