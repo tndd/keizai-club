@@ -1,21 +1,26 @@
 import time
+import sys
+import os
 from selenium import webdriver
 
 driver = webdriver.Chrome()
 
-url_base = 'https://keizaiclub.com/category/%e8%bf%91%e6%9c%aa%e6%9d%a5%e4%ba%88%e6%b8%ac/page/'
-page_number = 1
-progerss_file_path = './loaded_urls_near_future_prediction.tsv'
+target = sys.argv[1]
+target_en = sys.argv[2]
 
-# init progress file
-# with open(progerss_file_path, 'w') as f:
-#   f.write('')
+url_base = f'https://keizaiclub.com/category/{target}/page/'
+progress_dir_name = 'loaded_urls'
+progerss_file_path = f'./{progress_dir_name}/{target_en}.tsv'
+
+page_number = 1
+
+os.makedirs(progress_dir_name, exist_ok=True)
 
 while True:
   url = f'{url_base}{page_number}/'
   driver.get(url)
   time.sleep(3)
-  if driver.title != '近未来予測に関する記事一覧':
+  if 'ページが見つかりませんでした' in driver.title:
     with open(progerss_file_path, 'a') as f:
       f.write(f'QUALIFIED\n')
     break
