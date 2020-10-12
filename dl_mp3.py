@@ -18,7 +18,7 @@ for dl_target in dl_targets:
 
   for l in lines:
     progress[l[1]] = {
-      'group': dl_target,
+      'group': os.path.splitext(os.path.basename(dl_target))[0],
       'name': l[2],
       'status': False
     }
