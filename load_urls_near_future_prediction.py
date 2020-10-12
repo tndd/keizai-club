@@ -5,7 +5,7 @@ driver = webdriver.Chrome()
 
 url_base = 'https://keizaiclub.com/category/%e8%bf%91%e6%9c%aa%e6%9d%a5%e4%ba%88%e6%b8%ac/page/'
 page_number = 1
-progerss_file_path = './loaded_url_list.tsv'
+progerss_file_path = './loaded_urls_near_future_prediction.tsv'
 
 # init progress file
 # with open(progerss_file_path, 'w') as f:
