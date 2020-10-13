@@ -3,6 +3,7 @@ import os
 import json
 import glob
 import time
+import urllib.request
 from selenium import webdriver
 
 
@@ -46,3 +47,14 @@ driver.find_element_by_css_selector('#swpm_password').send_keys(conf['password']
 time.sleep(1)
 driver.find_element_by_css_selector('.swpm-login-form-submit').click()
 
+# download files
+for url, detail in progress.items():
+  if detail['status'] == True:
+    continue
+  driver.get(url)
+  links = driver.find_elements_by_css_selector('a')
+  for l in links:
+    if l.text == '音声ダウンロード（MP3)':
+      urllib.request.urlretrieve(l.get_attribute('href'), detail['name'])
+      time.sleep(1)
+      break
