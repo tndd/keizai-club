@@ -25,7 +25,7 @@ def init_dl_progress(prog_file_name):
       }
   with open(prog_file_name, 'w') as f:
     json.dump(progress, f, indent=2)
-  print(f"Create progress file: {progress_file_name}")
+  print(f"Created progress file: {progress_file_name}")
 
   return progress
 
