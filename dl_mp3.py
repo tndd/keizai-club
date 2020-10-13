@@ -62,7 +62,7 @@ try:
         print(f"Downloading: {url}")
         # extract date num
         urls = url.split('/')
-        date_num = urls[-4] + urls[-3] + urls[-2]
+        date_num = urls[-5] + urls[-4] + urls[-3]
         file_name = f"{date_num}_{detail['name']}.mp3"
         # create download dir
         group_dir_path = f"./{download_dir_name}/{detail['group']}"
