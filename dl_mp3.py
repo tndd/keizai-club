@@ -84,3 +84,4 @@ finally:
   with open(progress_file_name, 'w') as f:
     json.dump(progress, f, indent=2)
   print(f"Updated: {progress_file_name}")
+  driver.quit()
