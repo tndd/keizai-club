@@ -2,11 +2,12 @@ import sys
 import os
 import json
 import glob
-# from selenium import webdriver
+import time
+from selenium import webdriver
 
-# driver = webdriver.Chrome()
 
 progress_file_name = 'dl_progress.json'
+
 
 def init_dl_progress(prog_file_name):
   dl_targets = glob.glob('loaded_urls/*.tsv')
@@ -35,4 +36,13 @@ if os.path.exists(progress_file_name):
 else:
   progress = init_dl_progress(progress_file_name)
 
-print(progress)
+# login flow
+driver = webdriver.Chrome()
+with open('conf.json') as f:
+  conf = json.load(f)
+driver.get('https://keizaiclub.com/membership-login/')
+driver.find_element_by_css_selector('#swpm_user_name').send_keys(conf['username'])
+driver.find_element_by_css_selector('#swpm_password').send_keys(conf['password'])
+time.sleep(1)
+driver.find_element_by_css_selector('.swpm-login-form-submit').click()
+
