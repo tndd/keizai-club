@@ -71,7 +71,7 @@ try:
         try:
           urllib.request.urlretrieve(l.get_attribute('href'), f"{group_dir_path}/{file_name}")
           progress[url]['status'] = True
-          print(f"completed: {file_name}")
+          print(f"Completed: {file_name}")
           time.sleep(1)
         except:
           print(f"Skiped: {url}")
