@@ -55,7 +55,7 @@ try:
     if detail['group'] != 'podcasting':
       continue
     driver.get(url)
-    time.sleep(1)
+    time.sleep(3)
     links = driver.find_elements_by_css_selector('a')
     for l in links:
       if l.text == '音声ダウンロード（MP3)':
@@ -68,10 +68,13 @@ try:
         group_dir_path = f"./{download_dir_name}/{detail['group']}"
         os.makedirs(group_dir_path, exist_ok=True)
         # download mp3
-        urllib.request.urlretrieve(l.get_attribute('href'), f"{group_dir_path}/{file_name}")
-        progress[url]['status'] = True
-        print(f"completed: {file_name}")
-        time.sleep(1)
+        try:
+          urllib.request.urlretrieve(l.get_attribute('href'), f"{group_dir_path}/{file_name}")
+          progress[url]['status'] = True
+          print(f"completed: {file_name}")
+          time.sleep(1)
+        except:
+          print(f"Skiped: {url}")
         break
 except Exception as e:
   error(e)
