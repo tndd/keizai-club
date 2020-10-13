@@ -1,3 +1,4 @@
+from logging import error
 import os
 import json
 import glob
@@ -33,7 +34,7 @@ if os.path.exists(progress_file_name):
   with open(progress_file_name) as f:
     progress = json.load(f)
 else:
-  progress = init_dl_progress(download_dir_name, progress_file_name)
+  progress = init_dl_progress(progress_file_name)
 
 # login flow
 driver = webdriver.Chrome()
@@ -73,7 +74,8 @@ try:
         time.sleep(1)
         break
 except Exception as e:
-  print(e)
+  error(e)
+  error(e.message)
 finally:
   # save progress
   with open(progress_file_name, 'w') as f:
