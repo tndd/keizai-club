@@ -8,11 +8,10 @@ from selenium import webdriver
 
 
 progress_file_name = 'dl_progress.json'
+download_dir_name = 'downloaded'
 
-
-def init_dl_progress(prog_file_name):
+def init_dl_progress(dl_dir_name, prog_file_name):
   dl_targets = glob.glob('loaded_urls/*.tsv')
-  dl_dir_name = 'downloaded'
   os.makedirs(dl_dir_name, exist_ok=True)
 
   progress = dict()
@@ -35,7 +34,7 @@ if os.path.exists(progress_file_name):
   with open(progress_file_name) as f:
     progress = json.load(f)
 else:
-  progress = init_dl_progress(progress_file_name)
+  progress = init_dl_progress(download_dir_name, progress_file_name)
 
 # login flow
 driver = webdriver.Chrome()
