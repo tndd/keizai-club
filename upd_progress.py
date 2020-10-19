@@ -33,7 +33,7 @@ def add_new_progress_from_loaded_urls(progress):
   pprint(new_added_progress)
   return progress
 
-def update_progress_status_from_downloaded(progress):
+def sync_progress_status_with_downloaded(progress):
   downloaded_mp3s = glob.glob('downloaded/*/*.mp3')
   cnt_downloaded_files = 0
   for url, detail in progress.items():
@@ -43,7 +43,7 @@ def update_progress_status_from_downloaded(progress):
         progress[url]['status'] = True
         cnt_downloaded_files += 1
         break
-  print(f"Downloaded file num: {cnt_downloaded_files}")
+  print(f"Synced file num: {cnt_downloaded_files}")
   return progress
 
 def write_progress(progress_file_name, progress):
@@ -57,5 +57,5 @@ if __name__ == "__main__":
   progress_file_name = 'dl_progress.json'
   progress = load_progress(progress_file_name)
   progress_updated = add_new_progress_from_loaded_urls(progress)
-  progress_updated_status = update_progress_status_from_downloaded(progress_updated)
-  write_progress(progress_file_name, progress_updated_status)
+  progress_synced_status = sync_progress_status_with_downloaded(progress_updated)
+  write_progress(progress_file_name, progress_synced_status)
