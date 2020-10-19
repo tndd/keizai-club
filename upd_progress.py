@@ -14,6 +14,7 @@ else:
 
 # update progress dictionary
 dl_targets = glob.glob('loaded_urls/*.tsv')
+mp3s = glob.glob('downloaded/*/*.mp3')
 new_added_progress = []
 for dl_target in dl_targets:
   with open(dl_target) as f:
@@ -22,11 +23,17 @@ for dl_target in dl_targets:
     # skip update if already exist key in progress dictionary
     if l[1] in progress.keys():
       continue
+    # judge state
+    status = False  # default status is false
+    for title in mp3s:
+      if l[2] in title:
+        status = True
+        break
     # add new progress
     progress[l[1]] = {
       'group': os.path.splitext(os.path.basename(dl_target))[0],
       'name': l[2],
-      'status': False
+      'status': status
     }
     new_added_progress.append(l[1])
 
