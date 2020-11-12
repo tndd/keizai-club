@@ -30,9 +30,6 @@ def download_files(driver, progress, download_dir_name):
     for url, detail in progress.items():
       if detail['status'] == True:
         continue
-      # tmp
-      if detail['group'] != 'podcasting':
-        continue
       driver.get(url)
       time.sleep(3)
       links = driver.find_elements_by_css_selector('a')
