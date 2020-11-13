@@ -10,6 +10,7 @@ from upd_progress import (
   load_progress,
   add_new_progress_from_loaded_urls,
   sync_progress_status_with_downloaded,
+  exclude_urls,
   write_progress
 )
 
@@ -84,17 +85,19 @@ def download_files(driver, progress, download_dir_name):
 
 if __name__ == "__main__":
   progress_file_name = 'dl_progress.json'
+  exclude_urls_file_name = 'exclude_urls.txt'
   download_dir_name = 'downloaded'
   # init progress
   progress = load_progress(progress_file_name)
   progress_updated = add_new_progress_from_loaded_urls(progress)
   progress_synced_status = sync_progress_status_with_downloaded(progress_updated)
+  progress_excluded = exclude_urls(progress_synced_status, exclude_urls_file_name)
   # login
   driver = login_flow()
   # progress dictionaly is updated
   downloaded_progress = download_files(
     driver=driver,
-    progress=progress_synced_status,
+    progress=progress_excluded,
     download_dir_name=download_dir_name
   )
   # save progress dictionaly to file
