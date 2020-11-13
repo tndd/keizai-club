@@ -62,12 +62,14 @@ def write_progress(progress_file_name, progress):
     json.dump(progress, f, indent=2)
   print(f"Updated progress file: {progress_file_name}")
 
-
-if __name__ == "__main__":
+def init_progress():
   progress_file_name = 'dl_progress.json'
   exclude_urls_file_name = 'exclude_urls.txt'
   progress = load_progress(progress_file_name)
   progress_updated = add_new_progress_from_loaded_urls(progress)
   progress_synced_status = sync_progress_status_with_downloaded(progress_updated)
   progress_excluded = exclude_urls(progress_synced_status, exclude_urls_file_name)
-  write_progress(progress_file_name, progress_synced_status)
+  write_progress(progress_file_name, progress_excluded)
+
+if __name__ == "__main__":
+  init_progress()
