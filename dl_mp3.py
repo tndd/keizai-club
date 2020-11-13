@@ -27,52 +27,59 @@ def login_flow():
 
 
 def download_files(driver, progress, download_dir_name):
-  try:
-    for url, detail in progress.items():
-      if detail['status'] == True:
-        continue
-      # file name
-      urls = url.split('/')
-      date_num = urls[-5] + urls[-4] + urls[-3]
-      file_name = f"{date_num}_{detail['name']}".replace('/', '-')
-      file_name_mp3 = f"{file_name}.mp3"
-      file_name_mp4 = f"{file_name}.mp3"
-      group_dir_path = f"./{download_dir_name}/{detail['group']}"
-      # create download dir
-      os.makedirs(group_dir_path, exist_ok=True)
+  for url, detail in progress.items():
+    if detail['status'] == True:
+      continue
+    # file & save directory
+    urls = url.split('/')
+    date_num = urls[-5] + urls[-4] + urls[-3]
+    file_name = f"{date_num}_{detail['name']}".replace('/', '-')
+    file_name_mp3 = f"{file_name}.mp3"
+    file_name_mp4 = f"{file_name}.mp3"
+    group_dir_path = f"./{download_dir_name}/{detail['group']}"
+    # create download dir
+    os.makedirs(group_dir_path, exist_ok=True)
 
-      driver.get(url)
-      time.sleep(3)
-      links = driver.find_elements_by_css_selector('a')
-      for l in links:
-        if l.text == '音声ダウンロード（MP3)' or l.text == '音声ダウンロード':
-          print(f"Downloading: {url}")
-          # download mp3
-          try:
-            urllib.request.urlretrieve(l.get_attribute('href'), f"{group_dir_path}/{file_name_mp3}")
-            progress[url]['status'] = True
-            print(f"Completed: {file_name_mp3}")
-            time.sleep(1)
-          except:
-            print(f"Skiped: {url}")
-            # delete breaked file
-            if os.path.exists(f"{group_dir_path}/{file_name_mp3}"):
-              os.remove(f"{group_dir_path}/{file_name_mp3}")
-          break
-      else:
-        # download mp4 from youtube if not exist mp3
+    driver.get(url)
+    time.sleep(3)
+    links = driver.find_elements_by_css_selector('a')
+    for l in links:
+      if l.text == '音声ダウンロード（MP3)' or l.text == '音声ダウンロード':
+        print(f"Downloading: {url}")
+        # download mp3
+        try:
+          urllib.request.urlretrieve(l.get_attribute('href'), f"{group_dir_path}/{file_name_mp3}")
+          progress[url]['status'] = True
+          print(f"Completed: {file_name_mp3}")
+          time.sleep(1)
+        except:
+          print(f"Skiped: {url}")
+          # delete breaked file
+          if os.path.exists(f"{group_dir_path}/{file_name_mp3}"):
+            os.remove(f"{group_dir_path}/{file_name_mp3}")
+        break
+    else:
+      # download mp4 from youtube if not exist mp3
+      try:
         y_link = driver.find_element_by_tag_name('iframe').get_attribute('src')
-        destination = f"{group_dir_path}/{file_name_mp4}"
-        dl_script = ["youtube-dl", "-f", "mp4", y_link, "-o", destination]
+      except:
+        # skip if not exist iframe's url
+        print(f"Youtube link is not exist: {url}")
+        continue
+      destination = f"{group_dir_path}/{file_name_mp4}"
+      dl_script = ["youtube-dl", "-f", "mp4", y_link, "-o", destination]
+      try:
+        # download mp4
         subprocess.call(dl_script)
+        progress[url]['status'] = True
         print(f"Completed(mp4): {file_name_mp4}")
-        # TODO: delete mp4 if missing download
-  except Exception as e:
-    error(e)
-    error(e.message)
-  finally:
-    driver.quit()
-    return progress
+      except:
+        print(f"Skiped(mp4): {url}")
+        # delete breaked file
+        if os.path.exists(f"{group_dir_path}/{file_name_mp4}"):
+          os.remove(f"{group_dir_path}/{file_name_mp4}")
+  driver.quit()
+  return progress
 
 
 if __name__ == "__main__":
