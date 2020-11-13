@@ -25,7 +25,7 @@ def add_new_progress_from_loaded_urls(progress):
       # add new progress
       progress[l[1]] = {
         'group': os.path.splitext(os.path.basename(dl_target))[0],
-        'name': l[2],
+        'name': l[2].replace('/', '-'),
         'status': False
       }
       new_added_progress.append(l[1])
