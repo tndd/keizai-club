@@ -34,7 +34,7 @@ def download_files(driver, progress, download_dir_name):
       time.sleep(3)
       links = driver.find_elements_by_css_selector('a')
       for l in links:
-        if l.text == '音声ダウンロード（MP3)':
+        if l.text == '音声ダウンロード（MP3)' or l.text == '音声ダウンロード':
           print(f"Downloading: {url}")
           # extract date num
           urls = url.split('/')
@@ -55,6 +55,10 @@ def download_files(driver, progress, download_dir_name):
             if os.path.exists(f"{group_dir_path}/{file_name}"):
               os.remove(f"{group_dir_path}/{file_name}")
           break
+      else:
+        # download mp4 from youtube if not exist mp3
+        y_link = driver.find_element_by_tag_name('iframe').get_attribute('src')
+        print(y_link)
   except Exception as e:
     error(e)
     error(e.message)
