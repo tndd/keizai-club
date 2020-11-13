@@ -3,6 +3,7 @@ import os
 import json
 import time
 import urllib.request
+import subprocess
 from selenium import webdriver
 
 from upd_progress import (
@@ -30,35 +31,41 @@ def download_files(driver, progress, download_dir_name):
     for url, detail in progress.items():
       if detail['status'] == True:
         continue
+      # file name
+      urls = url.split('/')
+      date_num = urls[-5] + urls[-4] + urls[-3]
+      file_name = f"{date_num}_{detail['name']}".replace('/', '-')
+      file_name_mp3 = f"{file_name}.mp3"
+      file_name_mp4 = f"{file_name}.mp3"
+      group_dir_path = f"./{download_dir_name}/{detail['group']}"
+
       driver.get(url)
       time.sleep(3)
       links = driver.find_elements_by_css_selector('a')
       for l in links:
         if l.text == '音声ダウンロード（MP3)' or l.text == '音声ダウンロード':
           print(f"Downloading: {url}")
-          # extract date num
-          urls = url.split('/')
-          date_num = urls[-5] + urls[-4] + urls[-3]
-          file_name = f"{date_num}_{detail['name']}.mp3"
           # create download dir
-          group_dir_path = f"./{download_dir_name}/{detail['group']}"
           os.makedirs(group_dir_path, exist_ok=True)
           # download mp3
           try:
-            urllib.request.urlretrieve(l.get_attribute('href'), f"{group_dir_path}/{file_name}")
+            urllib.request.urlretrieve(l.get_attribute('href'), f"{group_dir_path}/{file_name_mp3}")
             progress[url]['status'] = True
-            print(f"Completed: {file_name}")
+            print(f"Completed: {file_name_mp3}")
             time.sleep(1)
           except:
             print(f"Skiped: {url}")
             # delete breaked file
-            if os.path.exists(f"{group_dir_path}/{file_name}"):
-              os.remove(f"{group_dir_path}/{file_name}")
+            if os.path.exists(f"{group_dir_path}/{file_name_mp3}"):
+              os.remove(f"{group_dir_path}/{file_name_mp3}")
           break
       else:
         # download mp4 from youtube if not exist mp3
         y_link = driver.find_element_by_tag_name('iframe').get_attribute('src')
-        print(y_link)
+        destination = f"{group_dir_path}/{file_name_mp4}"
+        dl_script = ["youtube-dl", "-f", "mp4", y_link, "-o", destination]
+        subprocess.call(dl_script)
+        print(f"Completed(mp4): {file_name_mp4}")
   except Exception as e:
     error(e)
     error(e.message)

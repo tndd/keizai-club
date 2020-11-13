@@ -34,7 +34,7 @@ def add_new_progress_from_loaded_urls(progress):
   return progress
 
 def sync_progress_status_with_downloaded(progress):
-  downloaded_mp3s = glob.glob('downloaded/*/*.mp3')
+  downloaded_mp3s = glob.glob('downloaded/*/*.mp[3,4]')
   cnt_downloaded_files = 0
   for url, detail in progress.items():
     progress[url]['status'] = False
