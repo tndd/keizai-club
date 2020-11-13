@@ -46,6 +46,16 @@ def sync_progress_status_with_downloaded(progress):
   print(f"Synced file num: {cnt_downloaded_files}")
   return progress
 
+def exclude_urls(progress, exclude_urls_file_name):
+  with open(exclude_urls_file_name, 'r') as f:
+    urls = f.readlines()
+  for url in urls:
+    try:
+      del progress[url.replace('\n', '')]
+    except:
+      pass
+  return progress
+
 def write_progress(progress_file_name, progress):
   # update progress file
   with open(progress_file_name, 'w') as f:
@@ -55,7 +65,9 @@ def write_progress(progress_file_name, progress):
 
 if __name__ == "__main__":
   progress_file_name = 'dl_progress.json'
+  exclude_urls_file_name = 'exclude_urls.txt'
   progress = load_progress(progress_file_name)
   progress_updated = add_new_progress_from_loaded_urls(progress)
   progress_synced_status = sync_progress_status_with_downloaded(progress_updated)
+  progress_excluded = exclude_urls(progress_synced_status, exclude_urls_file_name)
   write_progress(progress_file_name, progress_synced_status)
