@@ -38,6 +38,8 @@ def download_files(driver, progress, download_dir_name):
       file_name_mp3 = f"{file_name}.mp3"
       file_name_mp4 = f"{file_name}.mp3"
       group_dir_path = f"./{download_dir_name}/{detail['group']}"
+      # create download dir
+      os.makedirs(group_dir_path, exist_ok=True)
 
       driver.get(url)
       time.sleep(3)
@@ -45,8 +47,6 @@ def download_files(driver, progress, download_dir_name):
       for l in links:
         if l.text == '音声ダウンロード（MP3)' or l.text == '音声ダウンロード':
           print(f"Downloading: {url}")
-          # create download dir
-          os.makedirs(group_dir_path, exist_ok=True)
           # download mp3
           try:
             urllib.request.urlretrieve(l.get_attribute('href'), f"{group_dir_path}/{file_name_mp3}")
