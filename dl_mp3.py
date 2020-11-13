@@ -66,6 +66,7 @@ def download_files(driver, progress, download_dir_name):
         dl_script = ["youtube-dl", "-f", "mp4", y_link, "-o", destination]
         subprocess.call(dl_script)
         print(f"Completed(mp4): {file_name_mp4}")
+        # TODO: delete mp4 if missing download
   except Exception as e:
     error(e)
     error(e.message)
