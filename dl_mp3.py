@@ -36,7 +36,7 @@ def download_files(driver, progress, download_dir_name):
     date_num = urls[-5] + urls[-4] + urls[-3]
     file_name = f"{date_num}_{detail['name']}".replace('/', '-')
     file_name_mp3 = f"{file_name}.mp3"
-    file_name_mp4 = f"{file_name}.mp3"
+    file_name_mp4 = f"{file_name}.mp4"
     group_dir_path = f"./{download_dir_name}/{detail['group']}"
     # create download dir
     os.makedirs(group_dir_path, exist_ok=True)
