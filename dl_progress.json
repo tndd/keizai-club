@@ -76,17 +76,12 @@
   },
   "https://keizaiclub.com/2020/11/10/22051/": {
     "group": "hedge-fund-secret-memo",
-    "name": "\u3010\u30de\u30eb\u79d8\u3011 \u30c8\u30e9\u30f3\u30d7\u306e\u80cc\u5f8c\u306b\u3044\u308b\u30d7\u30ed\u30ec\u30b9\u56e3\u4f53\u306e\u672c\u5f53\u306e\u76ee\u7684\u3068\u9006\u8ee2\u52dd\u5229\u8aac(\u6a2a\u68ee\u5984\u60f3)",
+    "name": "\u3010\u30de\u30eb\u79d8\u3011 \u30c8\u30e9\u30f3\u30d7\u306e\u80cc\u5f8c\u306b\u3044\u308b\u30d7\u30ed\u30ec\u30b9\u56e3\u4f53\u306e\u672c\u5f53\u306e\u76ee\u7684(\u6a2a\u68ee\u5984\u60f3)",
     "status": true
   },
   "https://keizaiclub.com/2020/11/01/21978/": {
     "group": "hedge-fund-secret-memo",
     "name": "\u3010\u30de\u30eb\u79d8\u3011\u30c8\u30eb\u30b3\u56fd\u5bb6\u7834\u7dbb\uff01\u30ea\u30e9\u66b4\u843d\u304b\u3089\u6226\u4e89\u52c3\u767a\u8aac\u306b\u3064\u3044\u3066",
-    "status": true
-  },
-  "https://keizaiclub.com/2020/10/18/21879/": {
-    "group": "hedge-fund-secret-memo",
-    "name": "\u3010\u30de\u30eb\u79d8\u3011\u5927\u7d71\u9818\u9078\u6319\u306e\u88cf  \u3067\u52d5\u304f\u5b97\u6559\u56e3\u4f53\u306e\u79d8\u5bc6(\u30d7\u30ed\u30ec\u30b9\u7cfb\u3067\u3059\u2026)",
     "status": true
   },
   "https://keizaiclub.com/2020/10/07/21793/": {
@@ -3354,6 +3349,11 @@
     "name": "\u65e5\u672c\u306e\u4e0d\u52d5\u7523\u6295\u8cc7\u3067\u72d9\u3046\u3079\u304d\u5834\u6240\u3068\u306f\uff1f",
     "status": true
   },
+  "https://keizaiclub.com/2020/11/14/22089/": {
+    "group": "mind-set",
+    "name": "\u3010\u6295\u8cc7 \u7b2c290\u8a71\u3011\u7fd2\u3046\u3088\u308a\u6163\u308c\u308d\uff01",
+    "status": false
+  },
   "https://keizaiclub.com/2020/11/07/21970/": {
     "group": "mind-set",
     "name": "\u3010\u6295\u8cc7 \u7b2c289\u8a71\u3011\u904b\u3092\u5f15\u304d\u5bc4\u305b\u308b\u306b\u306f\u3001\u52aa\u529b\u3092\u7d9a\u3051\u308b\u3053\u3068",
@@ -4629,6 +4629,11 @@
     "name": "\u3010\u6295\u8cc7 \u7b2c29\u8a71\u3011 \u81ea\u4fe1\u304c\u306a\u3044\u3001\u305d\u306e\u4e00\u8a00\u304c\u8ffd\u3044\u8a70\u3081\u308b",
     "status": true
   },
+  "https://keizaiclub.com/2020/11/13/22066/": {
+    "group": "podcasting",
+    "name": "\u8cea\u554f1180 \u5730\u7403\u6e29\u6696\u5316\u8aac\u3001\u672c\u5f53\u306e\u76ee\u7684\u3068\u306f\uff1f",
+    "status": false
+  },
   "https://keizaiclub.com/2020/11/11/22063/": {
     "group": "podcasting",
     "name": "\u8cea\u554f1179 \u91d1\u878d\u7de9\u548c\u3067\u5927\u91cf\u7d19\u5e63\u3092\u5237\u308a\u306a\u304c\u3089\u3001\u306a\u305c\u901a\u8ca8\u4fa1\u5024\u3092\u7dad\u6301\u3067\u304d\u308b\u306e\u304b\uff1f",
@@ -4677,6 +4682,11 @@
   "https://keizaiclub.com/2020/10/20/21895/": {
     "group": "podcasting",
     "name": "\u7b2c443\u56de\u53ce\u9332 \u5927\u7d71\u9818\u9078\u6319\u5f8c\u3001\u30a2\u30e1\u30ea\u30ab\u306f\u5206\u65ad\u3055\u308c\u308b\uff1f",
+    "status": true
+  },
+  "https://keizaiclub.com/2020/10/18/21879/": {
+    "group": "podcasting",
+    "name": "\u3010\u30de\u30eb\u79d8\u3011\u5927\u7d71\u9818\u9078\u6319\u306e\u88cf  \u3067\u52d5\u304f\u5b97\u6559\u56e3\u4f53\u306e\u79d8\u5bc6(\u30d7\u30ed\u30ec\u30b9\u7cfb\u3067\u3059\u2026)",
     "status": true
   },
   "https://keizaiclub.com/2020/10/15/21806/": {
