@@ -34,8 +34,6 @@ def add_new_progress_from_loaded_urls(progress):
         'status': False
       }
       new_added_progress.append(l[0])
-  print(f'New Added url num: {len(new_added_progress)}')
-  pprint(new_added_progress)
   return progress
 
 def sync_progress_status_with_downloaded(progress):
