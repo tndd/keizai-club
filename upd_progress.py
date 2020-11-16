@@ -25,15 +25,15 @@ def add_new_progress_from_loaded_urls(progress):
       lines = list(map(lambda x: x.strip().split('\t'), f.readlines()))
     for l in lines:
       # skip update if already exist key in progress dictionary
-      if l[1] in progress.keys():
+      if l[0] in progress.keys():
         continue
       # add new progress
-      progress[l[1]] = {
+      progress[l[0]] = {
         'group': os.path.splitext(os.path.basename(dl_target))[0],
-        'name': l[2].replace('/', '-'),
+        'name': l[1].replace('/', '-'),
         'status': False
       }
-      new_added_progress.append(l[1])
+      new_added_progress.append(l[0])
   print(f'New Added url num: {len(new_added_progress)}')
   pprint(new_added_progress)
   return progress

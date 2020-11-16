@@ -28,7 +28,7 @@ def load_links(target, target_en):
       link = art.get_attribute('href')
       title = art.get_attribute('title').replace('/', '-')
       with open(progerss_file_path, 'a') as f:
-        f.write(f'{page_number}\t{link}\t{title}\n')
+        f.write(f'{link}\t{title}\n')
     page_number += 1
 
 # load targets
