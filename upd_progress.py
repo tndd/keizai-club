@@ -44,7 +44,7 @@ def sync_progress_status_with_downloaded(progress):
   for url, detail in progress.items():
     progress[url]['status'] = False
     for title in downloaded_mp3s:
-      if detail['name'] in title:
+      if detail['name'] in title and detail['group'] in title:
         progress[url]['status'] = True
         cnt_downloaded_files += 1
         break
