@@ -13,7 +13,12 @@ def load_progress(progress_file_name):
   return progress
 
 def add_new_progress_from_loaded_urls(progress):
-  dl_targets = glob.glob('loaded_urls/*.tsv')
+  dl_dir_name = 'loaded_urls'
+  with open('target_list.tsv', 'r') as f:
+    dl_targets = list(map(
+      lambda x: f"{dl_dir_name}/" + x.strip().split('\t')[1] + '.tsv',
+      f.readlines()
+    ))
   new_added_progress = []
   for dl_target in dl_targets:
     with open(dl_target) as f:
