@@ -7958,5 +7958,15 @@
     "group": "podcasting",
     "name": "\u8cea\u554f738 \u7b2c\uff13\u6b21\u4e16\u754c\u5927\u6226\u306b\u306a\u308b\u304b\uff1f",
     "status": true
+  },
+  "https://keizaiclub.com/2020/11/16/22261/": {
+    "group": "near-future-prediction",
+    "name": "\u30a2\u30d5\u30ea\u30ab\u8af8\u56fd\u306e\u8ca1\u653f\u5371\u6a5f\uff01\u6700\u5927\u306e\u50b5\u6a29\u56fd\u3067\u3042\u308b\u4e2d\u56fd\u306e\u6697\u3044\u672a\u6765\uff01\uff1f",
+    "status": false
+  },
+  "https://keizaiclub.com/2020/11/15/22099/": {
+    "group": "live-qa",
+    "name": "\u7b2c6\u56de \u6a2a\u68ee\u30e9\u30a4\u30d6Q\uff06A\u53ce\u9332\u7248 Part3 (2020-10-31)",
+    "status": false
   }
 }
