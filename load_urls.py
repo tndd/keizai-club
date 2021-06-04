@@ -2,7 +2,7 @@ import time
 import os
 from selenium import webdriver
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome('./chromedriver')
 
 def load_links(target, target_en):
   url_base = f'https://keizaiclub.com/category/{target}/page/'
