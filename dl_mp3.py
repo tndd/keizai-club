@@ -16,7 +16,7 @@ from upd_progress import (
 
 
 def login_flow():
-  driver = webdriver.Chrome()
+  driver = webdriver.Chrome('./chromedriver')
   with open('conf.json') as f:
     conf = json.load(f)
   driver.get('https://keizaiclub.com/membership-login/')
